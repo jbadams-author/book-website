@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+<% include ../partials/nav %>
+<% include ../partials/social-top %>
+
+<div class="container">
+  <div class="my-solid-background">
+    <h1>New Era</h1>
+    <form action="/eras" method="post">
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Archetype" name="era[archetype]">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Main Color" name="era[maincolor]">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Accent Color" name="era[accentcolor]">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+<% include ../partials/footer %>

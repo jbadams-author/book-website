@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+<% include ../partials/nav %>
+<% include ../partials/social-top %>
+
+<div class="container">
+  <div class="my-solid-background">
+    <h1>Edit Author <%=author.name%></h1>
+    <form action="/authors/<%=author._id%>?_method=PUT" method="POST">
+      <div class="form-group">
+        <input class="form-control" type="text" value="<%=author.name%>" name="author[name]">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+<% include ../partials/footer %>

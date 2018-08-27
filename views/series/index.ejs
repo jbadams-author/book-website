@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+<% include ../partials/nav %>
+<% include ../partials/social-top %>
+
+  <div>
+    <div class="my-solid-background">
+      <h1>All Series</h1>
+    </div>
+  </div>
+</div>
+
+<div class="wide-div marble-background small-padding">
+  <table class="index-table">
+    <tr class="index-table-header">
+      <td class="index-table-cell">id</td>
+      <td class="index-table-cell">Series</td>
+      <td class="index-table-cell">Edit</td>
+      <td class="index-table-cell">Delete</td>
+    </tr>
+    <% allseries.forEach(function(seri) { %>
+      <tr class="index-table-row">
+        <td class="index-table-cell"><%=seri._id%></td>
+        <td class="index-table-cell"><%=seri.series%></td>
+        <td class="index-table-cell"><a href="/series/<%=seri._id%>/edit" class="ui purple basic button">EDIT</a></td>
+        <td class="index-table-cell">
+          <form action="/series/<%=seri._id%>?_method=DELETE" method="POST">
+            <button class="ui red basic button">DELETE</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $("#my-jumbotron").addClass("small-jumbotron");
+</script>
+
+<% include ../partials/footer %>

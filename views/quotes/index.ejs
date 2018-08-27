@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+<% include ../partials/nav %>
+<% include ../partials/social-top %>
+
+  <div>
+    <div class="my-solid-background">
+      <h1>All Quotes</h1>
+    </div>
+  </div>
+</div>
+
+<div class="wide-div marble-background small-padding">
+  <table class="index-table">
+    <tr class="index-table-header">
+      <td class="index-table-cell">id</td>
+      <td class="index-table-cell">Quote</td>
+      <td class="index-table-cell">Speaker</td>
+      <td class="index-table-cell">Edit</td>
+      <td class="index-table-cell">Delete</td>
+    </tr>
+    <% quotes.forEach(function(quote) { %>
+      <tr class="index-table-row">
+        <td class="index-table-cell"><%=quote._id%></td>
+        <td class="index-table-cell"><%=quote.quote%></td>
+        <td class="index-table-cell"><%=quote.speaker%></td>
+        <td class="index-table-cell"><a href="/quotes/<%=quote._id%>/edit" class="ui purple basic button">EDIT</a></td>
+        <td class="index-table-cell">
+          <form action="/quotes/<%=quote._id%>?_method=DELETE" method="POST">
+            <button class="ui red basic button">DELETE</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $("#my-jumbotron").addClass("small-jumbotron");
+</script>
+
+<% include ../partials/footer %>

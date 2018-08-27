@@ -1,0 +1,13 @@
+  <div id="footer">
+    <h3 id="footer-quote"></h3>
+    <h6><em><i class="far fa-copyright"></i> Copyright 2018 thebloodoftheworld.com</em></h6>
+  </div>
+  <script type="text/javascript">
+    $.ajax("/quotes/random")
+     .done(function(data) {
+       var footerQuote = document.querySelector("#footer-quote");
+       footerQuote.innerHTML = `<em>"${data}"</em>`;
+     });
+  </script>
+</body>
+</html>
