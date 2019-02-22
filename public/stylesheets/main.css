@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: spectral-regular;
-    src: url("fonts/Spectral-Regular.ttf");
+    src: url("/assets/fonts/Spectral-Regular.ttf");
 }
 
 @font-face {
@@ -123,7 +123,8 @@ body {
 }
 
 #navbar-title,
-.navbar-nav>li>a.navbar-link {
+.navbar-nav>li>a.navbar-link,
+.footer-link {
   color: white;
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -134,7 +135,8 @@ body {
   padding-right: 0.5em;
 }
 
-.navbar-nav>li>a.navbar-link:hover {
+.navbar-nav>li>a.navbar-link:hover,
+.footer-link:hover {
   color: #FFBF00;
   border-color: #FFBF00;
   background: #00000000;
@@ -173,12 +175,14 @@ body {
   right: 0;
 }
 
-.list-inline>li>a.social-link {
+.list-inline>li>a.social-link,
+.news-item-link {
   color: white;
   transition: color 250ms linear;
 }
 
-.list-inline>li>a.social-link:hover {
+.list-inline>li>a.social-link:hover,
+.news-item-link:hover {
   color: #FFBF00;
 }
 
@@ -216,35 +220,42 @@ body {
 
 .image {
   width: 100%;
-  height: 250px;
+  height: 30vh;
   background-size: cover;
   background-position: center;
+  border: 1px solid #FFBF00;
 }
 
 .image1 {
-  background: url(https://source.unsplash.com/girwkupS11Q);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.image1:hover {
-  background: linear-gradient(#01FF7050, #FFBF0050), url(https://source.unsplash.com/girwkupS11Q);
+  background: url(/assets/images/articles/sonan-jewel-of-auryas-eye.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .image2 {
-  background-image: url(https://source.unsplash.com/kdEX01p83GI);
+  background-image: url(/assets/images/articles/the-forest-dwellers.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .image3 {
-  background-image: url(https://source.unsplash.com/fqT7zVm_9Qs);
+  background-image: url(/assets/images/articles/the-flesh-eaters.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .image4 {
-  background-image: url(https://source.unsplash.com/Ys-DBJeX0nE);
+  background-image: url(/assets/images/articles/blessed-astra-a-realm-unlike-any-other.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .image5 {
-  background-image: url(https://source.unsplash.com/5O6c_pLziXs);
+  background-image: url(/assets/images/articles/magic-and-caste.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .image6 {
   background-image: url(https://source.unsplash.com/ytRmS_hMaSk);
@@ -340,6 +351,47 @@ body {
 
 .spacer {
   margin-bottom: 1.0em;
+}
+
+.spacer-top {
+  margin-top: 1.0em;
+}
+
+.spacer-top-large {
+  margin-top: 4.0em;
+}
+
+.spacer-bottom-large {
+  margin-bottom: 3.0em;
+}
+
+.font-double {
+  font-size: 2.0em;
+}
+
+.no-bullet {
+  list-style: none;
+}
+
+.calendar-row {
+  margin: 1.0em;
+}
+
+.calendar-cell {
+  border: 1px solid #FFBF00;
+  width: 14.25%;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  /* margin: 1.0em; */
+  vertical-align: top;
+  text-align: left;
+  height: 12.5vh;
+}
+
+.vertical-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ar-image {

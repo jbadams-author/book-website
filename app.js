@@ -22,7 +22,9 @@ var indexRoutes     = require("./routes/index"),
     quoteRoutes     = require("./routes/quote"),
     eraRoutes       = require("./routes/era"),
     seriesRoutes    = require("./routes/series"),
-    authorRoutes    = require("./routes/author");
+    authorRoutes    = require("./routes/author"),
+    newsRoutes      = require("./routes/news"),
+    calendarRoutes  = require("./routes/calendar");
 
 // ######################################################################
 // BASIC SETUP
@@ -70,9 +72,9 @@ app.use("/quotes", quoteRoutes);
 app.use("/eras", eraRoutes);
 app.use("/series", seriesRoutes);
 app.use("/authors", authorRoutes);
-// app.use("/news", newsRoutes);
-// app.use("/events", eventRoutes);
+app.use("/news", newsRoutes);
+app.use("/calendar", calendarRoutes);
 
-app.listen(80, '0.0.0.0', function() {
+app.listen(3001, '0.0.0.0', function() {
   console.log("server has started");
 })

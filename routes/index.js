@@ -6,6 +6,10 @@ router.get("/", function(req, res) {
   res.render("home")
 })
 
+router.get("/jbadams", function(req, res) {
+  res.render("jbadams");
+})
+
 router.get("/invalid", function(req, res) {
   res.render("invalid");
 })

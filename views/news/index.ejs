@@ -1,0 +1,239 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/nav.ejs %>
+<% include ../partials/social-top.ejs %>
+
+  <div class="container">
+    <div class="my-solid-background">
+      <h1>News</h1>
+      <p><em>Updates and upcoming events</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FOR EVENT CALENDAR -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Event</h4>
+      </div>
+      <div class="modal-body">
+        <h3 id=modal-event-what></h3>
+        <h3 id="modal-event-when"></h3>
+        <h3 id="modal-event-where"></h3>
+        <hr>
+        <p id="modal-event-description"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END OF MODAL CODE -->
+
+<div class="container" style="text-align: center; color:white; font-size:1.25em;">
+  <div class="row spacer-bottom-large">
+
+    <div class="col-md-12 col-lg-4">
+      <h1>News</h1>
+      <ul>
+        <% newsItems.forEach(function(newsItem) { %>
+          <li class="no-bullet"><a class="news-item-link" href="/news/<%=newsItem._id%>"><%=newsItem.formattedDate %> - <%=newsItem.title%></a></li>
+          <% if (currentUser && currentUser.username == "jbadams_admin") { %>
+            <div class="">
+              <span>
+                <a href="/news/<%=newsItem._id%>/edit" class="ui purple basic button">EDIT</a>
+                <form action="/news/<%=newsItem._id%>?_method=DELETE" method="POST">
+                  <button class="ui red basic button">DELETE</button>
+                </form>
+              </span>
+            </div>
+          <% } %>
+        <% }) %>
+      </ul>
+      <hr>
+    </div>
+
+
+    <div class="col-md-12 col-lg-8">
+      <h1>Calendar</h1>
+      <p><em>Click an event to expand it</em></p>
+      <div style="width:100%;">
+        <div class="row" style="width:100%; margin:auto;">
+
+          <div class="col-xs-3">
+            <h3 style="font-size: 2.0em; background: none"><button id="prev-month" class="btn btn-warning" type="button" name="prev-month">&#8592;</button></h3>
+          </div>
+
+          <div class="col-xs-6">
+            <h3 style="font-size: 2.0em;" id="month-year-display"></h3>
+          </div>
+
+          <div class="col-xs-3">
+            <h3 style="font-size: 2.0em;"><button id="next-month" class="btn btn-warning" type="button" name="next-month">&#8594;</button></h3>
+          </div>
+
+        </div>
+
+        <table id="calendar-table" style="width:100%; margin:auto;">
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  function renderCalendar(year, month, calendarEventsDict) {
+    // starter variables
+    var weekdays = ["Sun", "Mon", "Tues", "Wed", "Thurs",
+                    "Fri", "Sat"];
+    var months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November",
+                  "December"];
+
+    // set month/year display
+    document.querySelector("#month-year-display").innerHTML = months[month] + " " + year;
+
+    var startOfMonthDay = new Date(year, month, 1, 0, 0, 0, 0);
+    var finalDayOfMonth = new Date(year, month+1, 0, 0, 0, 0, 0).getDate();
+    var weekday = startOfMonthDay.getDay();
+
+    var calendar = document.querySelector("#calendar-table");
+    while (calendar.firstChild) {
+      calendar.removeChild(calendar.firstChild);
+    }
+
+    // add the days of the week headers
+    var tr = document.createElement("tr");
+    tr.classList.add("calendar-row");
+    for (var i=0; i<weekdays.length; i++) {
+      var td = document.createElement("td");
+      td.innerHTML = weekdays[i];
+      tr.appendChild(td);
+    }
+    calendar.appendChild(tr);
+
+    // add blank tds until the correct start of the week day has been reached
+    tr = document.createElement("tr");
+    tr.classList.add("calendar-row");
+    for (var i=0; i<weekday; i++) {
+      var td = document.createElement("td");
+      tr.appendChild(td);
+    }
+
+    // now, add all days row by row
+    var endOfWeekCounter = weekday;
+    for (var i=1; i<=finalDayOfMonth; i++) {
+      endOfWeekCounter += 1;
+      var td = document.createElement("td");
+
+      // check if an event exists for that day
+      var calendarEventKey = `${year}-${month}-${i}`;
+
+      td.innerHTML = `<p style="text-align:right;padding-right:0.25em;">${i}</p>`
+
+      if (calendarEventsDict[calendarEventKey] !== undefined) {
+        calendarEventsDict[calendarEventKey].forEach(function(calendarEvent) {
+          var ed = new Date(calendarEvent["event_date"]); // event date
+          var ampm = "AM"
+          var eh = ed.getHours();
+          var em = ed.getMinutes();
+          if (eh > 12) {
+            eh -= 12;
+            ampm = "PM"
+          }
+          if (em < 10) {
+            em = "0" + em.toString();
+          }
+
+          td.innerHTML += `<p data-toggle="modal" data-target="#myModal" class="event-thumbnail" id="event-thumbnail-${calendarEvent['_id']}" style="background:#FFBF00; color:black; font-size:0.75em;">${eh}:${em} ${ampm} - ${calendarEvent["title"]}</p>`;
+        })
+      }
+
+
+      td.classList.add("calendar-cell");
+      tr.appendChild(td);
+
+      // if end of week has been reached, add row to calendar and start a new
+      // row
+      if (endOfWeekCounter == 7) {
+        calendar.appendChild(tr);
+        tr = document.createElement("tr");
+        tr.classList.add("calendar-row");
+        endOfWeekCounter = 0;
+      }
+    }
+    calendar.appendChild(tr);
+
+    // add event listeners to all "event-thumbnails"
+    $(".event-thumbnail").on("click", function() {
+      var calendarEventId = $(this).attr("id").split("-")[2];
+      // use ajax call to get all
+      $.ajax({
+        url: "/calendar/get_single_event/" + calendarEventId
+      }).done(function(data) {
+        var calendarEvent = JSON.parse(data);
+        d = new Date(calendarEvent["event_date"]);
+        var ampm = "AM"
+        var h = d.getHours();
+        var m = d.getMinutes();
+        if (h > 12) {
+          h -= 12;
+          ampm = "PM"
+        }
+        if (m < 10) {
+          m = "0" + m.toString();
+        }
+
+        var formattedDateTime = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${h}:${m} ${ampm}`;
+
+        $("#modal-event-what").html(calendarEvent["title"]);
+        $("#modal-event-when").html("Time: " + formattedDateTime);
+        $("#modal-event-where").html("Location: " + calendarEvent["location"]);
+        $("#modal-event-description").html(calendarEvent["description"]);
+
+      })
+    })
+
+
+  }
+
+
+  // get calendar events dict by ajax
+  $.ajax({
+    url: "/calendar/get_event_dictionary"
+  }).done(function(calendarEventsDict) {
+    calendarEventsDict = JSON.parse(calendarEventsDict);
+    var startingDate = new Date();
+    var year = startingDate.getFullYear();
+    var month = startingDate.getMonth();
+    renderCalendar(year, month, calendarEventsDict);
+
+    $("#prev-month").on("click", function() {
+      month -= 1;
+      if (month == -1) {
+        month = 11;
+        year -= 1;
+      }
+      renderCalendar(year, month, calendarEventsDict);
+    })
+
+    $("#next-month").on("click", function() {
+      month += 1;
+      if (month == 12) {
+        month = 0;
+        year += 1;
+      }
+      renderCalendar(year, month, calendarEventsDict);
+    })
+  });
+
+
+</script>
+
+<% include ../partials/footer.ejs %>

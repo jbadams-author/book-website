@@ -1,0 +1,36 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/nav.ejs %>
+<% include ../partials/social-top.ejs %>
+
+  <div class="container">
+    <div class="my-solid-background">
+      <h1><%=newsItem.title%></h1>
+      <h2><%=newsItem.formattedDate%></h2>
+    </div>
+  </div>
+</div>
+
+<div class="container article-body">
+
+  <div class="content indent">
+    <%-newsItem.article_body%>
+  </div>
+  <hr>
+
+  <div class="row" style="text-align:center;">
+    <div class="col-xs-12">
+      <a href="/news"><h4>Back to News</h4></a>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $("#my-jumbotron").css({
+    "background-repeat": "no-repeat",
+    "background-size": "cover",
+    "background-position": "center"
+  });
+</script>
+
+<% include ../partials/footer.ejs %>
