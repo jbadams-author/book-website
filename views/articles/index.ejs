@@ -10,19 +10,20 @@
   </div>
 </div>
 
-<div style="min-width:90%;" class="container spacer-top-large spacer-bottom-large">
-  <div style="background:#215e21;" class="row">
+<div style="min-width:90%;" class="container article-index-start-spacer article-index-end-spacer">
+  <div style="background:#215e21;" class="row foobar">
 
     <% articles.forEach(function(article) { %>
-      <div class="col-lg-4 col-md-6 spacer">
+      <div class="col-lg-4 col-md-6 article-spacer">
         <div class="articleRow ar-image" style="background-image: url(<%= article.image_url%>);">
+
           <div class="my-solid-background2 articleBrick place-at-top">
-            <h3 style="margin:1px;" class="articleTitle"><%= article.title %></h3>
-            <p style="margin:1px;" class="articleDescription"><em><%- article.blurb %></em></p>
+            <h3 class="articleTitle"><%= article.title %></h3>
+            <p class="articleDescription"><em><%- article.blurb %></em></p>
           </div>
 
-          <div class="articleBrick place-at-bottom">
-            <a id="test-read-button" class="ui inverted yellow button" href="/articles/<%=article._id%>"><h5>READ</h5></a>
+          <div class="place-at-bottom">
+            <a class="ui inverted yellow button article-read-button" href="/articles/<%=article._id%>"><h5>READ</h5></a>
 
             <% if (currentUser && currentUser.username == "jbadams_admin") { %>
               <div class="">

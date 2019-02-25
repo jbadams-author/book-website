@@ -35,7 +35,7 @@
 <!-- END OF MODAL CODE -->
 
 <div class="container" style="text-align: center; color:white; font-size:1.25em;">
-  <div class="row spacer-bottom-large">
+  <div class="row article-index-start-spacer article-index-end-spacer">
 
     <div class="col-md-12 col-lg-4">
       <h1>News</h1>
@@ -151,7 +151,8 @@
             em = "0" + em.toString();
           }
 
-          td.innerHTML += `<p data-toggle="modal" data-target="#myModal" class="event-thumbnail" id="event-thumbnail-${calendarEvent['_id']}" style="background:#FFBF00; color:black; font-size:0.75em;">${eh}:${em} ${ampm} - ${calendarEvent["title"]}</p>`;
+          //td.innerHTML += `<p data-toggle="modal" data-target="#myModal" class="event-thumbnail" id="event-thumbnail-${calendarEvent['_id']}" style="background:#FFBF00; color:black; font-size:0.75em;">${eh}:${em} ${ampm} ${calendarEvent["title"]}</p>`;
+          td.innerHTML += `<p data-toggle="modal" data-target="#myModal" class="event-thumbnail" id="event-thumbnail-${calendarEvent['_id']}">${eh}:${em} ${ampm}</p>`;
         })
       }
 

@@ -1,7 +1,19 @@
+/*
+##################################################
+GENERAL: set margin and padding to 0 for all elements
+##################################################
+*/
+
 * {
   margin: 0;
   padding: 0;
 }
+
+/*
+##################################################
+GENERAL: set font families
+##################################################
+*/
 
 @font-face {
     font-family: bebas;
@@ -124,7 +136,7 @@ body {
 
 #navbar-title,
 .navbar-nav>li>a.navbar-link,
-.footer-link {
+#footer>h3>a.footer-link {
   color: white;
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -136,7 +148,7 @@ body {
 }
 
 .navbar-nav>li>a.navbar-link:hover,
-.footer-link:hover {
+#footer>h3>a.footer-link:hover {
   color: #FFBF00;
   border-color: #FFBF00;
   background: #00000000;
@@ -166,6 +178,7 @@ body {
   transition: background-color 250ms linear;
   font-size: 2.0em;
   text-align: right;
+  height: 2.25em;
 }
 #social-bar:hover {
   background-color: #000000D0;
@@ -198,6 +211,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  text-decoration: none;
 }
 
 .index-table {
@@ -270,50 +284,71 @@ body {
   background-image: url(https://source.unsplash.com/kCrrUx7US04);
 }
 
+/*
+##################################################
+ARTICLES: CSS definitions for article-related content
+##################################################
+*/
+
 .articleRow {
   border: 2px solid #FFBF00;
   height: 50vh;
   background: #FFFFFF;
   color: black;
-  padding: 0;
+  padding:1.0em 0 0 0;
   width: 100%;
-  margin: 0.25em;
+  /* margin: 0.25em; */
+  border-radius: 50px;
+}
+
+.foobar {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .articleBrick {
+  margin: auto;
   font-family: spectral-regular;
-  width: 100%;
-  padding: 0;
+  padding: 0 0.5em 0 0.5em;
   text-align: center;
+
 }
 
 .place-at-top {
-  float: left;
+  margin: auto;
+  width: 90%;
+  padding: 0.25em;
+  border-radius: 10px;
 }
 
 .place-at-bottom {
   margin:auto;
   position: absolute;
+  left: 25%;
   bottom: 5%;
+  width: 50%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.article-read-button {
+  margin:auto;
+  padding: 0 5.0em 0 5.0em;
+  background: #000000D0 !important;
+}
+
+.article-read-button:hover {
+  background:yellow !important;
 }
 
 .article-read-button {
   margin:auto;
   padding: 0 5.0em 0 5.0em;
   background: #000000D0;
+  width: 50%;
 }
 
 .article-read-button:hover {
-  background:yellow;
-}
-
-#test-read-button {
-  margin:auto;
-  padding: 0 5.0em 0 5.0em;
-  background: #000000D0;
-}
-
-#test-read-button:hover {
   background:yellow;
 }
 
@@ -345,24 +380,33 @@ body {
   padding: 5.0em;
 }
 
+.previous-article-link {
+  text-align: left;
+}
+
+.next-article-link {
+  text-align: right;
+}
+
 .indent {
   text-indent: 1.5em;
 }
 
-.spacer {
+.article-index-start-spacer {
+  margin-top: 1.0em;
+}
+
+.article-index-end-spacer {
   margin-bottom: 1.0em;
+}
+
+.article-spacer {
+  margin-bottom: 1.0em;
+  margin-top: 1.0em;
 }
 
 .spacer-top {
   margin-top: 1.0em;
-}
-
-.spacer-top-large {
-  margin-top: 4.0em;
-}
-
-.spacer-bottom-large {
-  margin-bottom: 3.0em;
 }
 
 .font-double {
@@ -372,6 +416,12 @@ body {
 .no-bullet {
   list-style: none;
 }
+
+/*
+##################################################
+NEWS PAGE
+##################################################
+*/
 
 .calendar-row {
   margin: 1.0em;
@@ -385,7 +435,15 @@ body {
   /* margin: 1.0em; */
   vertical-align: top;
   text-align: left;
-  height: 12.5vh;
+  /* height: 12.5vh; */
+  height: 10.0vh;
+  max-height: 10.0vh;
+}
+
+.event-thumbnail {
+  background:#FFBF00;
+  color:black;
+  font-size:0.75em;
 }
 
 .vertical-center {
@@ -399,4 +457,31 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+/*
+##################################################
+MEDIA QUERIES
+##################################################
+*/
+
+/* Cell Phone */
+@media (max-width: 1000px) {
+  .article-body {
+    width: 100%;
+    padding: 1.0em;
+  }
+  .article-content {
+    width: 100%;
+  }
+
+  .event-thumbnail {
+    font-size: 0.5em;
+  }
+
+  #footer {
+    font-family: spectral-regular;
+  }
+
+
 }
