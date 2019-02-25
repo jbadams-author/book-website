@@ -240,6 +240,16 @@ body {
   border: 1px solid #FFBF00;
 }
 
+.about-the-author-image {
+  width:33%;
+  float: left;
+  margin-right: 2.0em;
+  background: url(/assets/images/articles/sonan-jewel-of-auryas-eye.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .image1 {
   background: url(/assets/images/articles/sonan-jewel-of-auryas-eye.jpg);
   background-repeat: no-repeat;
@@ -467,6 +477,12 @@ MEDIA QUERIES
 
 /* Cell Phone */
 @media (max-width: 1000px) {
+
+  .about-the-author-image {
+    width: 50%;
+    margin-right: 1.0em;
+  }
+
   .article-body {
     width: 100%;
     padding: 1.0em;
