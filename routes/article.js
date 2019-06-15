@@ -71,7 +71,7 @@ router.post("/", adminMidware.isAdmin, function(req, res) {
 
 // SHOW - SHOW ARTICLE
 router.get("/:id", function(req, res) {
-  Article.findById( new mongoose.Types.ObjectId(req.params.id)).populate("era").populate("series").populate("author").exec(function(err, foundArticle) {
+  Article.findById(req.params.id).populate("era").populate("series").populate("author").exec(function(err, foundArticle) {
     if (err) {
       console.log(err);
     } else {

@@ -250,6 +250,10 @@ body {
   background-position: center;
 }
 
+.rounded-img {
+  border-radius: 50px;
+}
+
 .image1 {
   background: url(/assets/images/articles/sonan-jewel-of-auryas-eye.jpg);
   background-repeat: no-repeat;
