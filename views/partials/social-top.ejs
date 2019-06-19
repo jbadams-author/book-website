@@ -1,13 +1,49 @@
 <div id="my-jumbotron" class="jumbotron">
-  <div style="padding: 0.5em;" id="social-bar" class="container form-group">
-    <form class="" action="index.html" method="post">
-      <ul id="test-list" class="list-inline">
-
-        <!-- <li><a class="social-link"><i class="fab fa-goodreads"></i></a></li> -->
-        <!-- <li><a class="social-link" href="https://twitter.com/jbadamsauthor"><i class="fab fa-twitter"></i></a></li> -->
-        <li><a class="social-link" href="https://www.instagram.com/jeremybruceadams"><i class="fab fa-instagram"></i></a></li>
-        <!-- <li><a class="social-link"><i class="fab fa-facebook"></i></a></li> -->
-        <!-- <li class="navbar-signup"><button class="form-control btn my-buttons" id="newsletterButton" type="submit">Get the newsletter!</button></li> -->
-      </ul>
-    </form>
+  <div style="padding: 0.25em;" id="social-bar" class="container form-group">
+    <ul id="test-list" class="list-inline">
+      <li style="font-size: 1.0em;"><a class="social-link" href="https://www.instagram.com/jeremybruceadams"><i class="fab fa-instagram"></i></a></li>
+      <!-- <li><a class="social-link" href="https://twitter.com/jbadamsauthor"><i class="fab fa-twitter"></i></a></li> -->
+      <!-- <li><a class="social-link"><i class="fab fa-facebook"></i></a></li> -->
+      <li class="navbar-signup"><button style="padding: 0px 5px 0px 5px;" class="form-control btn my-buttons" data-toggle="modal" data-target="#signup-modal" >Join Mailing List</button></li>
+    </ul>
   </div>
+
+  <div class="modal" id="signup-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header modal-signup">
+          <h2 class="modal-title">Join the mailing list for news and updates</h2>
+        </div>
+        <div class="modal-body modal-signup">
+          <div class="form-group form-inline row">
+            <label class="col-form-label" for="email">Email:</label>
+            <input class="form-control" type="email" id="email-input" placeholder="your email address">
+            <button class="my-buttons btn" id="email-btn">Sign Up</button>
+          </div class="form-group">
+        </div>
+
+        <div>
+          <p style="margin: 0px;" class="modal-signup" id="signup-result"></p>
+        </div>
+
+        <div class="modal-footer modal-signup">
+          <button type="button" class="my-buttons btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $("#email-btn").on("click", function() {
+      $.ajax("/admin/emailsignup", {
+        "method": "POST",
+        "type": "POST",
+        "data": {
+          "emailaddress": $("#email-input").val()
+        }
+      })
+       .done(function(data) {
+         $("#signup-result").html(data);
+       });
+    });
+  </script>

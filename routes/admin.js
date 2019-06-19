@@ -1,9 +1,9 @@
 var express         = require('express'),
-    passport        = require('passport');
-
-var User            = require('../models/user');
-
-var adminMidware    = require('../middleware/admin');
+    passport        = require('passport'),
+    User            = require('../models/user'),
+    Email           = require('../models/email'),
+    adminMidware    = require('../middleware/admin'),
+    emailValidator  = require('email-validator');
 
 var router  = express.Router();
 
@@ -48,6 +48,43 @@ router.get("/logout", function(req, res) {
     req.logout();
     req.flash("success", "Logged you out!");
     res.redirect("/");
+})
+
+// EMAIL SIGNUP
+router.post("/emailsignup", function(req, res) {
+  var validEmail = emailValidator.validate(req.body.emailaddress);
+  var responseString = "";
+
+  if (validEmail) {
+
+    Email.find({"email":req.body.emailaddress}, function(err, foundEmails) {
+      if (err) {
+        responseString = "There was an error, please try again later";
+        res.send(responseString);
+      } else {
+        if (foundEmails.length === 0) {
+          var newEmail = {email: req.body.emailaddress}
+          Email.create(newEmail, function(err, newlyCreated) {
+            if (err) {
+              responseString = "There was an error, please try again later";
+              res.send(responseString);
+            } else {
+              responseString = "Thank you for signing up!";
+              res.send(responseString);
+            }
+          });
+
+        } else {
+          responseString = "You've already signed up!";
+          res.send(responseString);
+        }
+      }
+    })
+
+  } else {
+    responseString = "Please enter a valid email address";
+    res.send(responseString);
+  }
 })
 
 module.exports = router;

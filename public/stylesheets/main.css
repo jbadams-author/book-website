@@ -55,20 +55,30 @@ body {
 .btn {
   flex: 1 1 auto;
   text-align: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   transition: 0.5s;
   background-size: 200% auto;
   color: black;
-  box-shadow: 0 0 20px #eee;
-  border-radius: 10px;
+  /* box-shadow: 0 0 20px #eee; */
+  /* border-radius: 10px; */
 }
 .btn:hover {
   background-position: right center; /* change the direction of the change here */
-  color: white;
+  color: black;
+  background-color: #FFBF00;
 }
 
 .my-buttons {
-  background-image: linear-gradient(to right, #32CD32 0%, #80DF38 51%, #FFBF00 100%);
+  /* background-image: linear-gradient(to right, #32CD32 0%, #80DF38 51%, #FFBF00 100%); */
+  background-color: #215e21;
+  border: 1px solid white;
+  color: white;
+}
+
+.my-buttons:focus {
+  color: white;
+  border: 1px solid #FFBF00;
+  outline: none !important;
 }
 
 #navbar-container {
@@ -110,6 +120,15 @@ body {
   padding-top: 0;
   margin: 0;
 
+}
+
+.modal-signup {
+  background: white;
+  color: #333;
+}
+
+#signup-modal {
+  border: 1px solid #FFBF00;
 }
 
 .massive-jumbotron {
